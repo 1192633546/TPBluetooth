@@ -27,6 +27,7 @@ import com.tpnet.tpbluetooth.inter.BlueClientListener;
 import com.tpnet.tpbluetooth.inter.BlueMessageListener;
 import com.tpnet.tpbluetooth.inter.BlueServerListener;
 import com.tpnet.tpbluetooth.inter.connect.Constant;
+import com.tpnet.tpbluetooth.net.NetManager;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -35,11 +36,12 @@ import java.util.UUID;
 
 /**
  * 基础蓝牙控制器
+ * EIBackhaul
  * Created by litp on 2017/5/25.
  */
 
 public class TPBluetooth extends Bluetooth {
-
+    public static final String TAG="TPBluetooth";
     private static TPBluetooth INSTANCE;
 
     private BluetoothAdapter mBluetoothAdapter;  //本地蓝牙
@@ -74,9 +76,10 @@ public class TPBluetooth extends Bluetooth {
 
     }
 
-    public static void init(Context context) {
+    public static void init(Context context,String url) {
         //初始化
         INSTANCE = new TPBluetooth(context);
+        NetManager.getInstance().initUrl(url);
     }
 
     public boolean initClassicBluetooth() {
@@ -103,7 +106,7 @@ public class TPBluetooth extends Bluetooth {
 
     }
 
-    private void isInit() {
+    public void isInit() {
         if (mBluetoothAdapter == null) {
             throw new RuntimeException("还没有进行传统或者ble的蓝牙初始化,请先调用initClassicBluetooth或者initBle进行初始化");
         }
@@ -186,7 +189,6 @@ public class TPBluetooth extends Bluetooth {
             //谷歌推荐的利用intent去打开蓝牙
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             context.startActivityForResult(intent, REQUEST_CODE_OPEN_BLUETOOTH);
-
             //下面的方式不推荐
             //mBlueToothAdapter.enable();
         }
@@ -415,7 +417,7 @@ public class TPBluetooth extends Bluetooth {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("@@", "取消绑定出错:" + e.getMessage());
+            Log.e(TAG, "取消绑定出错:" + e.getMessage());
         }
 
     }
@@ -509,7 +511,7 @@ public class TPBluetooth extends Bluetooth {
 
 
     /**
-     * 链接到服务器
+     * 连接到服务器
      *
      * @param device
      */
@@ -530,10 +532,10 @@ public class TPBluetooth extends Bluetooth {
     }
 
     /**
-     * 链接到ble设备
+     * 连接到ble设备
      *
      * @param device      要连接的ble设备
-     * @param autoConnect 是否自动链接
+     * @param autoConnect 是否自动连接
      * @param transport   方式
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -554,7 +556,7 @@ public class TPBluetooth extends Bluetooth {
 
     /**
      * 连接ble服务器
-     * @param device 要链接的服务器设备
+     * @param device 要连接的服务器设备
      * @param autoConnect 
      */
  

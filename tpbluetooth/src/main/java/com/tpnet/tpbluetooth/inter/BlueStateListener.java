@@ -1,27 +1,30 @@
 package com.tpnet.tpbluetooth.inter;
 
+import android.bluetooth.BluetoothDevice;
+
 /**
  * 蓝牙状态监听器
  * Created by litp on 2017/6/1.
  */
 
-public abstract class BlueStateListener {
-    
-    
-    public void onOpen(){};
+public interface  BlueStateListener {
 
-    public void onClose(){};
 
-    public void onOpening(){};
+    default void onOpen(){};
 
-    public void onClosing(){};
+    default void onClose(){};
 
-    public void onConnected(){};
+    default void onOpening(){};
 
-    public void onConnecting(){};
+    default void onClosing(){};
 
-    public void onDisconnected(){};
+    default void onConnected(){};
+    default void onConnected(BluetoothDevice device){};
 
-    public void onDisconnecting(){};
- 
+    default void onConnecting(){};
+
+    default void onDisconnected(){};
+
+    default void onDisconnecting(){};
+
 }

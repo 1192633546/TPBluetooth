@@ -4,26 +4,26 @@ import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 
 /**
- * 链接服务相关的回调接口
+ * 连接服务相关的回调接口
  * Created by litp on 2017/6/1.
  */
 
  
 @SuppressLint("NewApi")
-public abstract class BlueServerListener {
-    
-    public void onStartListener(){};
-    
-    public void onListenering(){};
-    
-    public void onFinishListener(){};
-    
-    public void onServerError(Exception e){};
-    
-    public void onGetClient(BluetoothDevice text){};
+public interface  BlueServerListener {
 
-    public void onRemoveClient(BluetoothDevice device){};
+    default void onStartListener(){};
 
-    public void onCloseClient(BluetoothDevice device){};
+    default void onListenering(){};
+
+    default void onFinishListener(){};
+
+    default void onServerError(Exception e){};
+
+    default void onGetClient(BluetoothDevice text){};
+
+    default void onRemoveClient(BluetoothDevice device){};
+
+    default void onCloseClient(BluetoothDevice device){};
 
 }

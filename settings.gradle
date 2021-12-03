@@ -1,1 +1,1 @@
-include ':sample', ':tpbluetooth'
+include ':app', ':tpbluetooth'

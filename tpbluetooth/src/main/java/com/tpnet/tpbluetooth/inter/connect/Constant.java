@@ -16,7 +16,7 @@ public class Constant {
     //文件传输服务：00001106-0000-1000-8000-00805F9B34FB
     public static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public static final ParcelUuid MY_PARCELUUID_UUID = ParcelUuid.fromString("FA87C0D0-AFAC-11DE-8A39-0800200C9A66");
-    public static final String SERVER_SOCKET_NAME = "BlueToothSocket";  //Socket链接的名称
+    public static final String SERVER_SOCKET_NAME = "BlueToothSocket";  //Socket连接的名称
 
 
 
@@ -35,10 +35,10 @@ public class Constant {
     public static final int RECEIVE_MESSAGE = 0x55;       //有客户端进入了
 
 
-    public static final int CLIENT_START_CONNECT = 0x65;    //开始链接到服务器
-    public static final int CLIENT_CONNECTING = 0x76;       //正在链接到服务器
-    public static final int CLIENT_FINISH_CONNECT = 0x87;   //已经链接到服务器
-    public static final int CLIENT_ERROR = 0x98;            //链接到错误
+    public static final int CLIENT_START_CONNECT = 0x65;    //开始连接到服务器
+    public static final int CLIENT_CONNECTING = 0x76;       //正在连接到服务器
+    public static final int CLIENT_FINISH_CONNECT = 0x87;   //已经连接到服务器
+    public static final int CLIENT_ERROR = 0x98;            //连接到错误
     
 
     public static final String INTENT_DEVICE = "intent_device"; // 

@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.tpnet.tpbluetooth.inter.connect.Constant;
 
@@ -19,7 +20,7 @@ import static com.tpnet.tpbluetooth.inter.connect.Constant.RECEIVE_MESSAGE;
  */
 
 public class ConnectThread extends Thread{
-    
+    public static final String TAG="ConnectThread";
     private final BluetoothSocket mSocket;
     
     private final InputStream mInputStream;
@@ -58,6 +59,7 @@ public class ConnectThread extends Thread{
             try{
                 //读取数据
                 bytes = mInputStream.read(buffer);
+                Log.e(TAG, "run: 读取数据" );
                 if(bytes > 0){
                     
                     //转换为字符串，发给ui
@@ -79,7 +81,7 @@ public class ConnectThread extends Thread{
                 e.printStackTrace();
                 break;
             }
-            //Log.e("@@","内容大小："+bytes);
+            //Log.e(TAG,"内容大小："+bytes);
         }
         
         

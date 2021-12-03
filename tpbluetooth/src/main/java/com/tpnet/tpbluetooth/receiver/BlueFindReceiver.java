@@ -16,7 +16,7 @@ import com.tpnet.tpbluetooth.inter.BlueFindListener;
  */
 
 public class BlueFindReceiver extends BroadcastReceiver {
-    
+    public static final String TAG="BlueFindReceiver";
     
     private BlueFindListener listener;
 
@@ -32,7 +32,7 @@ public class BlueFindReceiver extends BroadcastReceiver {
             case BluetoothAdapter.ACTION_DISCOVERY_STARTED:
 
                 //开始查找设备
-                Log.e("@@", "开始查找设备");
+                Log.e(TAG, "开始查找设备");
                 if(listener != null){
                     listener.onStartDiscovery();
                 }
@@ -41,7 +41,7 @@ public class BlueFindReceiver extends BroadcastReceiver {
 
             case BluetoothAdapter.ACTION_DISCOVERY_FINISHED:
                 //查找完毕
-                Log.e("@@", "查找设备完成");
+                Log.e(TAG, "查找设备完成");
                 if(listener != null){
                     listener.onFinishDiscovery();
                 }
@@ -51,7 +51,7 @@ public class BlueFindReceiver extends BroadcastReceiver {
                 //每查找到一个设备就会接收到一个广播
 
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.e("@@","找到设备了："+(device == null));
+                Log.e(TAG,"找到设备了："+(device == null));
                 
                 if(listener != null){
                     listener.onFound(device);
@@ -60,10 +60,10 @@ public class BlueFindReceiver extends BroadcastReceiver {
             case BluetoothAdapter.ACTION_SCAN_MODE_CHANGED:
 
                 int scanMode = intent.getIntExtra(BluetoothAdapter.EXTRA_SCAN_MODE, 0);
-                Log.e("@@", "扫描模式改变" + scanMode);
+                Log.e(TAG, "扫描模式改变" + scanMode);
 
                 if (scanMode == BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
-                    // 处于蓝牙可见、可链接模式
+                    // 处于蓝牙可见、可连接模式
                     if(listener != null){
                         listener.onModeConnectableDiscoverable();
                     }

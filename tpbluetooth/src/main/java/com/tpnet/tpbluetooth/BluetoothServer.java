@@ -55,7 +55,7 @@ import static com.tpnet.tpbluetooth.inter.connect.Constant.SERVER_START_LISTENER
  */
 
 public class BluetoothServer {
-
+    public static final String TAG="BluetoothServer";
     private final BluetoothAdapter mAdapter;
     
     private ServerThread mServerThread;
@@ -66,7 +66,7 @@ public class BluetoothServer {
     private BlueClientListener mClientListener;  //客户端状态监听器
     private BlueMessageListener mMessageListener;  //接收消息监听器
     
-    private BleClientListener mBleClientListener; //ble的链接监听器
+    private BleClientListener mBleClientListener; //ble的连接监听器
 
 
     private MessageProtocol mMessageProtocol;  //消息处理
@@ -80,7 +80,7 @@ public class BluetoothServer {
     private BluetoothGatt mBluetoothGatt;
 
     
-    //链接上的服务器的服务列表
+    //连接上的服务器的服务列表
     private Map<BluetoothGattService,List<BluetoothGattCharacteristic>> serviceListMap;
 
 
@@ -94,25 +94,25 @@ public class BluetoothServer {
             BluetoothDevice device;
             switch (msg.what) {
                 case SERVER_START_LISTENER:
-                    Log.e("@@", "服务器开始监听");
+                    Log.e(TAG, "服务器开始监听");
                     if(mServerListener != null){
                         mServerListener.onStartListener();
                     }
                     break;
                 case SERVER_LISTENERING:
-                    Log.e("@@", "服务器正在监听...");
+                    Log.e(TAG, "服务器正在监听...");
                     if(mServerListener != null){
                         mServerListener.onListenering();
                     }
                     break;
                 case SERVER_FINISH_LISTENER:
-                    Log.e("@@", "服务器完成监听");
+                    Log.e(TAG, "服务器完成监听");
                     if(mServerListener != null){
                         mServerListener.onFinishListener();
                     }
                     break;
                 case SERVER_GET_CLIENT:
-                    Log.e("@@", "有客户端链接进来了");
+                    Log.e(TAG, "有客户端连接进来了");
                     BluetoothDevice  remoteDevice = (BluetoothDevice) msg.obj;
                     if(mServerListener != null){
                         mServerListener.onGetClient(remoteDevice);
@@ -120,13 +120,13 @@ public class BluetoothServer {
                     break;
                 case SERVER_ERROR:
                     IOException e = (IOException) msg.obj;
-                    Log.e("@@", "链接错误:" + e.getMessage());
+                    Log.e(TAG, "连接错误:" + e.getMessage());
                     if(mServerListener != null){
                         mServerListener.onServerError(e);
                     }
                     break;
                 case SERVER_CLOSE_CLIENT:
-                    //客户端关闭了链接，服务端也得去掉
+                    //客户端关闭了连接，服务端也得去掉
                     
                     device = (BluetoothDevice) msg.obj;
                     if(mServerListener != null){
@@ -147,7 +147,7 @@ public class BluetoothServer {
                     Bundle bundle = (Bundle) msg.obj;
                     String mess = bundle.getString(Constant.INTENT_MESSAGE);
                     device = bundle.getParcelable(Constant.INTENT_DEVICE);
-                    Log.e("@@", "收到消息:" + mess);
+                    Log.e(TAG, "收到消息:" + mess);
                     
                     if(mMessageListener != null){
                         mMessageListener.onReceiveMessage(device,mess);
@@ -156,25 +156,25 @@ public class BluetoothServer {
   
                 
                 case CLIENT_START_CONNECT:
-                    Log.e("@@", "开始链接到服务器");
+                    Log.e(TAG, "开始连接到服务器");
                     if(mClientListener != null){
                         mClientListener.onStartConnect();
                     }
                     break;
                 case CLIENT_FINISH_CONNECT:
-                    Log.e("@@", "链接到服务器完毕");
+                    Log.e(TAG, "连接到服务器完毕");
                     if(mClientListener != null){
                         mClientListener.onFinishConnect();
                     }
                     break;
                 case CLIENT_CONNECTING:
-                    Log.e("@@", "正在链接到服务器。。。");
+                    Log.e(TAG, "正在连接到服务器。。。");
                     if(mClientListener != null){
                         mClientListener.onConnecting();
                     }
                     break;
                 case CLIENT_ERROR:
-                    Log.e("@@", "链接到服务器错误");
+                    Log.e(TAG, "连接到服务器错误");
                     IOException e1 = (IOException) msg.obj;
                     if(mClientListener != null){
                         mClientListener.onClientError(e1);
@@ -218,7 +218,7 @@ public class BluetoothServer {
     }
 
     /**
-     * 在服务器中，断开一个链接的客户端
+     * 在服务器中，断开一个连接的客户端
      * @param device 要断开服务器的设备
      */
     public void stopServer(BluetoothDevice device){
@@ -229,8 +229,8 @@ public class BluetoothServer {
     
 
     /**
-     * 开始链接到服务器
-     * @param device 要链接的设备
+     * 开始连接到服务器
+     * @param device 要连接的设备
      */
     public synchronized void connect(BluetoothDevice device) {
         if (mClientThread != null ) {
@@ -322,7 +322,7 @@ public class BluetoothServer {
 
 
     /**
-     * 获取当前链接的客户端设备数量
+     * 获取当前连接的客户端设备数量
      * @return
      */
     public int getClientNum(){
@@ -399,14 +399,14 @@ public class BluetoothServer {
     }
 
     /**
-     * 链接到ble设备,返回BluetoothGatt，就可以进行相关读写数据操作
+     * 连接到ble设备,返回BluetoothGatt，就可以进行相关读写数据操作
      * @param mContext
      * @param device
      * @param autoConnect
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public boolean connectBle(Context mContext, BluetoothDevice device, boolean autoConnect ) {
-        BlueLog.e("开始链接ble设备:"+device.getAddress());
+        BlueLog.e("开始连接ble设备:"+device.getAddress());
         mBluetoothGatt = device.connectGatt(mContext, true, new BleConnectListener());
         return mBluetoothGatt.connect();
         //return true;
@@ -542,7 +542,7 @@ public class BluetoothServer {
             super.onConnectionStateChange(gatt, status, newState);
             //
             switch (newState){
-                case BluetoothProfile.STATE_CONNECTED:  //已经链接
+                case BluetoothProfile.STATE_CONNECTED:  //已经连接
                     if(mBleClientListener != null){
                         //开始发现服务,需要发现服务成功后才能进行相关操作，一定要调用此方法，否则获取不到服务 
                         gatt.discoverServices();
@@ -555,7 +555,7 @@ public class BluetoothServer {
                     }
 
                     break;
-                case BluetoothProfile.STATE_CONNECTING:  //链接中
+                case BluetoothProfile.STATE_CONNECTING:  //连接中
                     if(mBleClientListener != null){
                         post(new Runnable() {
                             @Override
@@ -565,7 +565,7 @@ public class BluetoothServer {
                         });
                     }
                     break;
-                case BluetoothProfile.STATE_DISCONNECTED:  //断开链接了
+                case BluetoothProfile.STATE_DISCONNECTED:  //断开连接了
                     if(mBleClientListener != null){
                         post(new Runnable() {
                             @Override
@@ -575,7 +575,7 @@ public class BluetoothServer {
                         });
                     }
                     break;
-                case BluetoothProfile.STATE_DISCONNECTING:  //断开链接中
+                case BluetoothProfile.STATE_DISCONNECTING:  //断开连接中
                     if(mBleClientListener != null){
                         post(new Runnable() {
                             @Override

@@ -1,7 +1,7 @@
 package com.tpnet.tpbluetooth.inter;
 
 /**
- * 链接服务相关的回调接口
+ * 连接服务相关的回调接口
  * Created by litp on 2017/6/1.
  */
 

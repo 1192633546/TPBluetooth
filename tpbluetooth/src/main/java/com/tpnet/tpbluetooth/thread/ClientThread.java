@@ -14,21 +14,21 @@ import static com.tpnet.tpbluetooth.inter.connect.Constant.CLIENT_START_CONNECT;
 import static com.tpnet.tpbluetooth.inter.connect.Constant.MY_UUID;
 
 /**
- * 客户端链接服务端的的线程 socket类
+ * 客户端连接服务端的的线程 socket类
  * Created by litp on 2017/5/27.
  */
 
 public class ClientThread extends Thread {
 
-    private final BluetoothSocket mSocket;   //链接的Socket
+    private final BluetoothSocket mSocket;   //连接的Socket
     
-    private final BluetoothDevice mDevice;   //要链接的设备
+    private final BluetoothDevice mDevice;   //要连接的设备
     
     private BluetoothAdapter mBlueAdapter;   //本地蓝牙适配器
     
     private final Handler mHandler;       //回调主线程
     
-    private ConnectThread mConnectThread;  //链接线程
+    private ConnectThread mConnectThread;  //连接线程
 
 
     public ClientThread(BluetoothDevice device, BluetoothAdapter adapter, Handler mHandler) {
@@ -59,7 +59,7 @@ public class ClientThread extends Thread {
         mBlueAdapter.cancelDiscovery();
         
         try {
-            //链接
+            //连接
             mSocket.connect();
             mHandler.sendEmptyMessage(CLIENT_CONNECTING);
         } catch (IOException e) {
@@ -80,7 +80,7 @@ public class ClientThread extends Thread {
 
     
     /**
-     * 在新的线程链接服务器
+     * 在新的线程连接服务器
      * @param socket
      */
     private void managerConnectedSocket(BluetoothSocket socket){

@@ -46,7 +46,10 @@ public class Bluetooth {
 
     public void setOnBlueStateListener(BlueStateListener listener){
         stateReceiver = new BlueStateReceiver(listener);
-        mContext.registerReceiver(stateReceiver,new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
+        IntentFilter intentFilter=new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        intentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+        mContext.registerReceiver(stateReceiver,intentFilter);
 
     }
 

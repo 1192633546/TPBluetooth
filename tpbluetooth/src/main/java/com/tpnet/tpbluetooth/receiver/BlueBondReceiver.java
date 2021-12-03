@@ -14,7 +14,7 @@ import com.tpnet.tpbluetooth.inter.BlueBondListener;
  */
 
 public class BlueBondReceiver extends BroadcastReceiver {
-    
+    public static final String TAG="BlueBondReceiver";
     private BlueBondListener listener;
 
 
@@ -28,7 +28,7 @@ public class BlueBondReceiver extends BroadcastReceiver {
         BluetoothDevice remoteDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
         if (remoteDevice == null) {
             //showToast("no device");
-            Log.e("@@", "绑定设备状态改变：设备为空");
+            Log.e(TAG, "绑定设备状态改变：设备为空");
             return;
         }
 
@@ -38,7 +38,7 @@ public class BlueBondReceiver extends BroadcastReceiver {
         switch (status){
             case BluetoothDevice.BOND_BONDED:
                 //已经绑定了
-                Log.e("@@", "已经绑定设备:" + remoteDevice.getAddress());
+                Log.e(TAG, "已经绑定设备:" + remoteDevice.getAddress());
 
                 if(listener != null){
                     listener.onBonded(remoteDevice);
@@ -47,7 +47,7 @@ public class BlueBondReceiver extends BroadcastReceiver {
                 break;
             case BluetoothDevice.BOND_BONDING:
                 //绑定中
-                Log.e("@@", "绑定设备中:" + remoteDevice.getAddress());
+                Log.e(TAG, "绑定设备中:" + remoteDevice.getAddress());
 
                 if(listener != null){
                     listener.onBonding(remoteDevice);
@@ -56,7 +56,7 @@ public class BlueBondReceiver extends BroadcastReceiver {
                 break;
             case BluetoothDevice.BOND_NONE:
                 //取消绑定
-                Log.e("@@", "取消绑定设备:" + remoteDevice.getAddress());
+                Log.e(TAG, "取消绑定设备:" + remoteDevice.getAddress());
                 if(listener != null){
                     listener.onCancleBond(remoteDevice);
                 }
