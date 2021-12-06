@@ -15,7 +15,7 @@ import android.widget.EditText;
 import com.tpnet.bluedemo.adapter.MessageListAdapter;
 import com.tpnet.bluedemo.bean.IMMessage;
 import com.tpnet.bluedemo.util.ToastUtil;
-import com.tpnet.tpbluetooth.TPBluetooth;
+import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 import com.tpnet.tpbluetooth.inter.BlueClientListener;
 import com.tpnet.tpbluetooth.inter.BlueMessageListener;
 import com.tpnet.tpbluetooth.inter.BlueServerListener;
@@ -42,7 +42,7 @@ public class BleIMActivity extends Activity implements View.OnClickListener, Blu
     private List<IMMessage> mDataList;
     private MessageListAdapter mAdapter;
     
-    private TPBluetooth mBlueControl;
+    private EIBackHaulBluetooth mBlueControl;
 
     BluetoothDevice mDevice;
     @Override
@@ -65,7 +65,7 @@ public class BleIMActivity extends Activity implements View.OnClickListener, Blu
         
         mBtnSend.setOnClickListener(this);
         
-        mBlueControl = TPBluetooth.getInstance();
+        mBlueControl = EIBackHaulBluetooth.getInstance();
         
         mBlueControl.setOnMessageListener(this);
 

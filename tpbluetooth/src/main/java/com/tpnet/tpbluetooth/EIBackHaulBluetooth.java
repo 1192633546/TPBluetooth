@@ -40,9 +40,9 @@ import java.util.UUID;
  * Created by litp on 2017/5/25.
  */
 
-public class TPBluetooth extends Bluetooth {
+public class EIBackHaulBluetooth extends Bluetooth {
     public static final String TAG="TPBluetooth";
-    private static TPBluetooth INSTANCE;
+    private static EIBackHaulBluetooth INSTANCE;
 
     private BluetoothAdapter mBluetoothAdapter;  //本地蓝牙
 
@@ -62,13 +62,13 @@ public class TPBluetooth extends Bluetooth {
     private BluetoothControl mControl;  //控制器
 
 
-    private TPBluetooth(Context context) {
+    private EIBackHaulBluetooth(Context context) {
         super(context);
 
     }
 
 
-    public static TPBluetooth getInstance() {
+    public static EIBackHaulBluetooth getInstance() {
         if (INSTANCE == null) {
             throw new RuntimeException("蓝牙控制器还没进行初始化");
         }
@@ -78,7 +78,7 @@ public class TPBluetooth extends Bluetooth {
 
     public static void init(Context context,String url) {
         //初始化
-        INSTANCE = new TPBluetooth(context);
+        INSTANCE = new EIBackHaulBluetooth(context);
         NetManager.getInstance().initUrl(url);
     }
 

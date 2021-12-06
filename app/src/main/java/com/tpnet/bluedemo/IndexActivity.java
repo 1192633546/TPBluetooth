@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tpnet.bluedemo.util.ToastUtil;
-import com.tpnet.tpbluetooth.TPBluetooth;
+import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 import com.tpnet.tpbluetooth.event.ReveiverEvent;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -35,7 +35,7 @@ import java.util.List;
 public class IndexActivity extends AppCompatActivity {
     public static final String TAG = "IndexActivity";
     private CheckBox mCbOpen;
-    private TPBluetooth mBlueControl;
+    private EIBackHaulBluetooth mBlueControl;
     private TextView tv_content;
 
     @Override
@@ -56,7 +56,7 @@ public class IndexActivity extends AppCompatActivity {
         }
 
 
-        mBlueControl = TPBluetooth.getInstance();
+        mBlueControl = EIBackHaulBluetooth.getInstance();
 
         if (mBlueControl.isBluetoothEnable()) {
             mCbOpen.setChecked(true);

@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.tpnet.bluedemo.adapter.ServiceAdapter;
 import com.tpnet.bluedemo.util.ToastUtil;
 import com.tpnet.tpbluetooth.BlueLog;
-import com.tpnet.tpbluetooth.TPBluetooth;
+import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 import com.tpnet.tpbluetooth.inter.BleClientListener;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class BleConnectActivity extends Activity implements View.OnClickListener
     
     ServiceAdapter mServiceAdapter;
 
-    TPBluetooth blueControl;
+    EIBackHaulBluetooth blueControl;
     private Map<BluetoothGattService, List<BluetoothGattCharacteristic>> serviceListMap;
 
 
@@ -66,7 +66,7 @@ public class BleConnectActivity extends Activity implements View.OnClickListener
         mBtnRead.setOnClickListener(this);
         mBtnWrite.setOnClickListener(this);
         
-        blueControl = TPBluetooth.getInstance();
+        blueControl = EIBackHaulBluetooth.getInstance();
         serviceListMap = blueControl.getBluetoothServer().getServiceMap();
         
         

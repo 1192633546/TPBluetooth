@@ -3,11 +3,10 @@ package com.tpnet.bluedemo;
 import android.app.Application;
 import android.content.pm.PackageManager;
 
-import com.tpnet.tpbluetooth.TPBluetooth;
+import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 
 
 /**
- * Created by litp on 2017/6/1.
  */
 
 public class BaseApplication extends Application {
@@ -23,8 +22,8 @@ public class BaseApplication extends Application {
         super.onCreate();
         application = this;
         //初始化蓝牙控制器
-        String url="";
-        TPBluetooth.init(this,url);
+        String url="todo";
+        EIBackHaulBluetooth.init(this,url);
     }
     
    

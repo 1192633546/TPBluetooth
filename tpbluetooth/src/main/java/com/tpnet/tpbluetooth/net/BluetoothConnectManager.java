@@ -3,7 +3,7 @@ package com.tpnet.tpbluetooth.net;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
-import com.tpnet.tpbluetooth.TPBluetooth;
+import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 import com.tpnet.tpbluetooth.event.ReveiverEvent;
 import com.tpnet.tpbluetooth.inter.BlueBondListener;
 import com.tpnet.tpbluetooth.inter.BlueClientListener;
@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.EventBus;
 public class BluetoothConnectManager {
     public static final String TAG = "BluetoothConnectManager";
     private static BluetoothConnectManager instance;
-    private TPBluetooth mBlueControl;
+    private EIBackHaulBluetooth mBlueControl;
 
     private BluetoothConnectManager() {
         initClassisBt();
@@ -40,7 +40,7 @@ public class BluetoothConnectManager {
      * 初始化蓝牙
      */
     private void initClassisBt() {
-        mBlueControl = TPBluetooth.getInstance();
+        mBlueControl = EIBackHaulBluetooth.getInstance();
         //初始化传统蓝牙模式
         mBlueControl.initClassicBluetooth();
     }

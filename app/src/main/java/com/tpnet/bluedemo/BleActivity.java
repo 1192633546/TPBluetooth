@@ -30,7 +30,7 @@ import com.tpnet.bluedemo.adapter.DeviceListAdapter;
 import com.tpnet.bluedemo.util.ToastUtil;
 import com.tpnet.bluedemo.view.DefaultAdapter;
 import com.tpnet.tpbluetooth.BlueLog;
-import com.tpnet.tpbluetooth.TPBluetooth;
+import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 import com.tpnet.tpbluetooth.inter.BleFindListener;
 import com.tpnet.tpbluetooth.inter.BleServerListener;
 import com.tpnet.tpbluetooth.inter.connect.Constant;
@@ -52,7 +52,7 @@ import static android.bluetooth.le.AdvertiseCallback.ADVERTISE_FAILED_TOO_MANY_A
 
 public class BleActivity extends Activity implements View.OnClickListener, DefaultAdapter.OnRecyclerViewItemClickListener {
     public static final String TAG="BleActivity";
-    TPBluetooth mBlueControl;
+    EIBackHaulBluetooth mBlueControl;
 
     private List<BluetoothDevice> mDataList;
     private List<ScanResult> mResultList;
@@ -94,7 +94,7 @@ public class BleActivity extends Activity implements View.OnClickListener, Defau
         mRcvBleList.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
 
-        mBlueControl = TPBluetooth.getInstance();
+        mBlueControl = EIBackHaulBluetooth.getInstance();
         if (!mBlueControl.initBle()) {
             ToastUtil.show("该设备不支持Ble");
             return;

@@ -13,7 +13,7 @@ import com.tpnet.tpbluetooth.inter.BlueStateListener;
 import java.util.Set;
 
 /**
- * Created by litp on 2017/6/1.
+ * 接受系统蓝牙广播
  */
 
 public class BlueStateReceiver extends BroadcastReceiver {

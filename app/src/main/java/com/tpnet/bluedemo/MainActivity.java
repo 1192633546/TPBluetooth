@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.tpnet.bluedemo.adapter.DeviceListAdapter;
 import com.tpnet.bluedemo.view.DefaultAdapter;
 import com.tpnet.bluedemo.view.DeviceItemLayout;
-import com.tpnet.tpbluetooth.TPBluetooth;
+import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 import com.tpnet.tpbluetooth.inter.BlueBondListener;
 import com.tpnet.tpbluetooth.inter.BlueFindListener;
 import com.tpnet.tpbluetooth.inter.BlueServerListener;
@@ -34,7 +34,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, DefaultAdapter.OnRecyclerViewItemClickListener, View.OnLongClickListener, CompoundButton.OnCheckedChangeListener {
     public static final String TAG="MainActivity";
 
-    private TPBluetooth mBlueControl;
+    private EIBackHaulBluetooth mBlueControl;
 
 
     private TextView mTvTip;
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mRbOpenVisiable.setOnCheckedChangeListener(this);
 
  
-        mBlueControl =  TPBluetooth.getInstance();
+        mBlueControl =  EIBackHaulBluetooth.getInstance();
         //初始化传统蓝牙模式
         mBlueControl.initClassicBluetooth();
         
@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == TPBluetooth.REQUEST_CODE_OPEN_BLUETOOTH) {
+        if (requestCode == EIBackHaulBluetooth.REQUEST_CODE_OPEN_BLUETOOTH) {
             //
             if (resultCode == RESULT_OK) {
 

@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.tpnet.bluedemo.util.ToastUtil;
 import com.tpnet.tpbluetooth.BlueLog;
-import com.tpnet.tpbluetooth.TPBluetooth;
+import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 import com.tpnet.tpbluetooth.inter.BleClientListener;
 
 import java.util.List;
@@ -54,7 +54,7 @@ public class DetailActivity extends Activity {
     private TextView mTvServiceudid;
     private TextView mTvTxpowerlevel;
   
-    TPBluetooth mBlueControl;
+    EIBackHaulBluetooth mBlueControl;
     
     ProgressDialog mProgressDialog;
     
@@ -88,7 +88,7 @@ public class DetailActivity extends Activity {
         ScanRecord record = result.getScanRecord();
         
         
-        mBlueControl = TPBluetooth.getInstance();
+        mBlueControl = EIBackHaulBluetooth.getInstance();
         //连接ble服务器监听器
         mBlueControl.setOnBleClientListener(new BleClientListener() {
 
