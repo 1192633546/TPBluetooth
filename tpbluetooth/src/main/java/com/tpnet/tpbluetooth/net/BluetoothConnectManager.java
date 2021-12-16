@@ -107,12 +107,15 @@ public class BluetoothConnectManager {
      * 数据回调监听
      */
     private void setOnMessageListener() {
+        String requestBody=NetManager.getInstance().uploadLog("");
+        NetManager.getInstance().upLoadData(requestBody);
         mBlueControl.setOnMessageListener(new BlueMessageListener() {
             @Override
             public void onReceiveMessage(BluetoothDevice device, String data) {
                 Log.e(TAG, "onReceiveMessage: t==" + Thread.currentThread().getName());
                 Log.e(TAG, "onReceiveMessage: " + data);
-                NetManager.getInstance().upLoadData(data);
+                String requestBody=NetManager.getInstance().uploadLog(data);
+                NetManager.getInstance().upLoadData(requestBody);
                 ReveiverEvent event=new ReveiverEvent(data);
                 EventBus.getDefault().post(event);
             }
