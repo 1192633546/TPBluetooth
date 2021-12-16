@@ -3,6 +3,10 @@ package com.tpnet.tpbluetooth.net;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.tpnet.tpbluetooth.net.bean.ServerUrlInfoBean;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +19,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class OkhttpManager {
@@ -34,6 +39,35 @@ public class OkhttpManager {
 
     public void init(String url) {
         this.mUrl = url;
+        getServerUrl(URL.LAUNCHER_TEST);
+    }
+
+    public void getServerUrl(String mUrl) {
+        Log.e(TAG, "upload: " + mUrl);
+        if (TextUtils.isEmpty(mUrl)) {
+            return;
+        }
+        Request request = new Request.Builder()
+                .url(mUrl)
+                .get()
+                .build();
+        OkHttpClient okHttpClient = getClient();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(TAG, "onFailure: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String body = response.body().string();
+                String message = response.message();
+                String to = response.toString();
+                Log.d(TAG, "onResponse: message=="+message);
+                ServerUrlInfoBean bean = new Gson().fromJson(body, new TypeToken<ServerUrlInfoBean>(){}.getType());
+                Log.e(TAG, "onResponse: " + bean);
+            }
+        });
     }
 
     public void upload(String requestBody) {
