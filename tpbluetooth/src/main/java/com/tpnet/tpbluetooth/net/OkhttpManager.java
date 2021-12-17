@@ -19,7 +19,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class OkhttpManager {
@@ -37,8 +36,7 @@ public class OkhttpManager {
         return instance;
     }
 
-    public void init(String url) {
-        this.mUrl = url;
+    public void init() {
         getServerUrl(URL.LAUNCHER_TEST);
     }
 
@@ -55,46 +53,52 @@ public class OkhttpManager {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d(TAG, "onFailure: " + e.getMessage());
+                Log.d(TAG, "getServerUrl onFailure: " + e.getMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String body = response.body().string();
-                String message = response.message();
-                String to = response.toString();
-                Log.d(TAG, "onResponse: message=="+message);
-                ServerUrlInfoBean bean = new Gson().fromJson(body, new TypeToken<ServerUrlInfoBean>(){}.getType());
-                Log.e(TAG, "onResponse: " + bean);
+                Log.d(TAG, "getServerUrl onResponse: " + body);
+                getUrl(body);
             }
         });
     }
 
+    private void getUrl(String body) {
+        ServerUrlInfoBean bean = new Gson().fromJson(body, new TypeToken<ServerUrlInfoBean>() {
+        }.getType());
+        Log.e(TAG, "getUrl: " + bean);
+        this.mUrl = bean.getData().getSrvAddress();
+
+        String requestBody=NetManager.getInstance().uploadLog("");
+        NetManager.getInstance().upLoadData(requestBody);
+    }
+
     public void upload(String requestBody) {
-        Log.e(TAG, "upload: " + requestBody);
+        Log.e(TAG, "upload: mUrl==" + mUrl);
         if (TextUtils.isEmpty(mUrl)) {
             return;
         }
         MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
         Request request = new Request.Builder()
-                .url(mUrl)
+                .url(mUrl+URL.UPLOAD_PATH)
                 .post(RequestBody.create(mediaType, requestBody))
                 .build();
         OkHttpClient okHttpClient = getClient();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d(TAG, "onFailure: " + e.getMessage());
+                Log.d(TAG, "upload onFailure: " + e.getMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.d(TAG, response.protocol() + " " + response.code() + " " + response.message());
+                Log.d(TAG, "upload onResponse: " + response.body().string());
                 Headers headers = response.headers();
                 for (int i = 0; i < headers.size() && headers != null; i++) {
                     Log.d(TAG, headers.name(i) + ":" + headers.value(i));
                 }
-                Log.d(TAG, "onResponse: " + response.body().string());
             }
         });
     }

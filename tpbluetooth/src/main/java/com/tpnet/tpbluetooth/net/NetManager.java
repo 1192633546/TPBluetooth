@@ -14,7 +14,6 @@ import java.util.List;
 public class NetManager {
     public static final String TAG = "NetManager";
     private static NetManager instance;
-    public String url;
 
     private NetManager() {
     }
@@ -26,10 +25,8 @@ public class NetManager {
         return instance;
     }
 
-    public void initUrl(String url) {
-        this.url = url;
-        OkhttpManager.getInstance().init(url);
-
+    public void initUrl() {
+        OkhttpManager.getInstance().init();
         BluetoothDevice device = BluetoothUtils.getConnectedBtDevice();
         if (device != null) {
             Log.e(TAG, "initUrl: device==" + device);

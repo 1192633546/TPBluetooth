@@ -18,23 +18,13 @@ public class BaseApplication extends Application {
         return application;
     }
 
-    /**
-     * 正式
-     */
-    public static final String LAUNCHER_ONLINE = "https://eviapp.sanyevi.cn/eiapp/official/";
-    /**
-     * 测试
-     */
-    public static final String LAUNCHER_TEST = "https://eviapptest.sanyevi.cn/eiapp/";
-    public static final String UPLOAD_PATH = "AppV1/wkData/upload/block/uncheck";
 
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
         //初始化蓝牙控制器
-        String url = LAUNCHER_TEST + UPLOAD_PATH;
-        EIBackHaulBluetooth.init(this, url);
+        EIBackHaulBluetooth.init(this);
     }
 
 

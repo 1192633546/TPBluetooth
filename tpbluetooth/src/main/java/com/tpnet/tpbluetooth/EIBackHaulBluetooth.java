@@ -76,10 +76,10 @@ public class EIBackHaulBluetooth extends Bluetooth {
 
     }
 
-    public static void init(Context context,String url) {
+    public static void init(Context context) {
         //初始化
         INSTANCE = new EIBackHaulBluetooth(context);
-        NetManager.getInstance().initUrl(url);
+        NetManager.getInstance().initUrl();
     }
 
     public boolean initClassicBluetooth() {
