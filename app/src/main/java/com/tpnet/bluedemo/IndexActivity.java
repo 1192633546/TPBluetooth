@@ -145,7 +145,7 @@ public class IndexActivity extends AppCompatActivity {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(ReveiverEvent event) {
-        Log.e(TAG, "onEventMainThread: "+event.getMsg() );
+        Log.e(TAG, "onEventMainThread: " + event.getMsg());
         content.add(event.getMsg());
         tv_content.setText(content.toString());
     }

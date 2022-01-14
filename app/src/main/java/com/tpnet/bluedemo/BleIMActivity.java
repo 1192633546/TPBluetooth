@@ -166,11 +166,11 @@ public class BleIMActivity extends Activity implements View.OnClickListener, Blu
     }
 
     @Override
-    public void onReceiveMessage(BluetoothDevice device, String mess) {
+    public void onReceiveMessage(BluetoothDevice device, byte[] mess) {
         //收到消息
         
         IMMessage message = new IMMessage();
-        message.setContent(mess);
+        message.setContent(new String(mess));
         if(!TextUtils.isEmpty(device.getName())){
             message.setName(device.getName());
         }

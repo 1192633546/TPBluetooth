@@ -42,7 +42,8 @@ public class Constant {
     
 
     public static final String INTENT_DEVICE = "intent_device"; // 
-    public static final String INTENT_MESSAGE = "intent_message"; // 
+    public static final String INTENT_MESSAGE = "intent_message"; //
+    public static final String INTENT_MESSAGE_BYTES = "intent_message_bytes"; //
 
     public static final long RUNNABLE_TOKEN = 0x1234;   //runnable的任务token
 }

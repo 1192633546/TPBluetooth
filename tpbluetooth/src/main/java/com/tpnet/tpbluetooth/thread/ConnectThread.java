@@ -19,31 +19,31 @@ import static com.tpnet.tpbluetooth.inter.connect.Constant.RECEIVE_MESSAGE;
  * Created by litp on 2017/5/27.
  */
 
-public class ConnectThread extends Thread{
-    public static final String TAG="ConnectThread";
+public class ConnectThread extends Thread {
+    public static final String TAG = "ConnectThread";
     private final BluetoothSocket mSocket;
-    
+
     private final InputStream mInputStream;
-    
+
     private final OutputStream mOututStream;
-    
+
     private final Handler mHandler;
-    
+
     public ConnectThread(BluetoothSocket socket, Handler mHandler) {
-        
-        this.mSocket =  socket;
+
+        this.mSocket = socket;
         this.mHandler = mHandler;
         InputStream cacheInput = null;
         OutputStream cacheOutput = null;
-        
-        try{
-           cacheInput = socket.getInputStream(); 
-           cacheOutput = socket.getOutputStream(); 
-        }catch (IOException e){
+
+        try {
+            cacheInput = socket.getInputStream();
+            cacheOutput = socket.getOutputStream();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        
-       
+
+
         mInputStream = cacheInput;
         mOututStream = cacheOutput;
     }
@@ -51,65 +51,69 @@ public class ConnectThread extends Thread{
     @Override
     public void run() {
         super.run();
-        
+
         byte[] buffer = new byte[1024];
-        int bytes = 0;
-        
-        while (true){
-            try{
+        int length = 0;
+        while (true) {
+            try {
                 //读取数据
-                bytes = mInputStream.read(buffer);
-                Log.e(TAG, "run: 读取数据" );
-                if(bytes > 0){
-                    
-                    //转换为字符串，发给ui
-                    
+                length = mInputStream.read(buffer);
+                Log.e(TAG, "run: 读取数据 length=="+length);
+                if (length > 0) {
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable(Constant.INTENT_DEVICE,mSocket.getRemoteDevice());
-                    bundle.putString(Constant.INTENT_MESSAGE,new String(buffer,0,bytes,"utf-8"));
-                    
-                    Message message = mHandler.obtainMessage(RECEIVE_MESSAGE,bundle);
+                    bundle.putParcelable(Constant.INTENT_DEVICE, mSocket.getRemoteDevice());
+                    // 去除多余的000
+
+                    byte[] bytes = new byte[length];
+                    for (int i = 0; i < length; i++) {
+                        bytes[i] = buffer[i];
+                    }
+                    String data = new String(bytes);
+                    bundle.putString(Constant.INTENT_MESSAGE, data);
+                    bundle.putByteArray(Constant.INTENT_MESSAGE_BYTES, bytes);
+                    Message message = mHandler.obtainMessage(RECEIVE_MESSAGE, bundle);
                     mHandler.sendMessage(message);
                 }
-            }catch (IOException e){
-                
+            } catch (IOException e) {
+
                 //对方socket关闭，
-                
+
                 //mHandler.sendMessage(mHandler.obtainMessage(Constant.CLIENT_FINISH_CONNECT,mSocket.getRemoteDevice()));
-                
-                mHandler.sendMessage(mHandler.obtainMessage(Constant.SERVER_CLOSE_CLIENT,mSocket.getRemoteDevice()));
+
+                mHandler.sendMessage(mHandler.obtainMessage(Constant.SERVER_CLOSE_CLIENT, mSocket.getRemoteDevice()));
                 e.printStackTrace();
                 break;
             }
             //Log.e(TAG,"内容大小："+bytes);
         }
-        
-        
+
+
     }
 
     /**
-     * 取消  
+     * 取消
      */
     public void cancel() {
-        try{
+        try {
             mSocket.close();
             mInputStream.close();
             mOututStream.close();
-            
-        }catch (IOException e){
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
     }
 
     /**
      * 发送信息给远程设备
+     *
      * @param data
      */
     public void write(byte[] data) {
-        try{
+        try {
             mOututStream.write(data);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -118,10 +122,9 @@ public class ConnectThread extends Thread{
         return mSocket.getRemoteDevice().getAddress();
     }
 
- 
 
     @Override
     public boolean equals(Object obj) {
-        return ((ConnectThread)obj).getRemoteDeviceMac().equals(getRemoteDeviceMac());
+        return ((ConnectThread) obj).getRemoteDeviceMac().equals(getRemoteDeviceMac());
     }
 }

@@ -58,7 +58,7 @@ public class BluetoothConnectManager {
     }
 
     private void retryConnect(BluetoothDevice device) {
-        Log.e(TAG, "retryConnect: " );
+        Log.e(TAG, "retryConnect: ");
         connect(device);
     }
 
@@ -109,12 +109,10 @@ public class BluetoothConnectManager {
     private void setOnMessageListener() {
         mBlueControl.setOnMessageListener(new BlueMessageListener() {
             @Override
-            public void onReceiveMessage(BluetoothDevice device, String data) {
+            public void onReceiveMessage(BluetoothDevice device, byte[] message) {
                 Log.e(TAG, "onReceiveMessage: t==" + Thread.currentThread().getName());
-                Log.e(TAG, "onReceiveMessage: " + data);
-                String requestBody=NetManager.getInstance().uploadLog(data);
-                NetManager.getInstance().upLoadData(requestBody);
-                ReveiverEvent event=new ReveiverEvent(data);
+                NetManager.getInstance().upLoadData(message);
+                ReveiverEvent event = new ReveiverEvent(new String(message),message);
                 EventBus.getDefault().post(event);
             }
         });

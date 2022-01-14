@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.tpnet.tpbluetooth.BluetoothUtils;
+import com.tpnet.tpbluetooth.device.DataBeanUtils;
+import com.tpnet.tpbluetooth.device.PrimitiveConversion;
 import com.tpnet.tpbluetooth.net.upload.DataDetailBean;
 import com.tpnet.tpbluetooth.net.upload.UploadDataBean;
 
@@ -36,22 +38,28 @@ public class NetManager {
         BluetoothConnectManager.getInstance().connect(device);
     }
 
-    public void upLoadData(String requestBody) {
-        /**
-         * 00202600000000759e010000000000759e759e0000751375db000010008a160000000000000000e703000000000000000000000000000000000000000000000000000000401c4500803b4500007a4400751e4700751e4700803b45acb1314500000000b4a2913b000000000000000000000000000000000000000080853b5c00000041000048420000000000000000000000000000c8420000c84200000000000000000000000000000000000000000000c84200000000000000001bf72770c1c99fdf0000000000000000000000000000000077772740e4b8bf41
-         */
+    public void upLoadData(byte[] data) {
+        String requestBody = uploadLog(data);
         OkhttpManager.getInstance().upload(requestBody);
     }
 
-    public String uploadLog(String data) {
-        data = "00202600000000759e010000000000759e759e0000751375db000010008a160000000000000000e703000000000000000000000000000000000000000000000000000000401c4500803b4500007a4400751e4700751e4700803b45acb1314500000000b4a2913b000000000000000000000000000000000000000080853b5c00000041000048420000000000000000000000000000c8420000c84200000000000000000000000000000000000000000000c84200000000000000001bf72770c1c99fdf0000000000000000000000000000000077772740e4b8bf41";
-        int intLen = 32;
-        int floatLen = 38;
-        int version = 18;
-        String serialNo = "SY05500000444";
-        int fcp = 1;
+    private String uploadLog(byte[] data) {
+        DataBeanUtils utils = new DataBeanUtils(data);
+        String serialNo = utils.getSerialNo();
+        int intLen = utils.getIntLen();
+        int floatLen = utils.getFloatLen();
+        int version = utils.getVersion();
+        int fcp = utils.getFcp();
         String loginid = serialNo;
-        return uploadLog(data, floatLen, version, intLen, serialNo, fcp, loginid);
+        StringBuilder baseData = new StringBuilder();
+        byte[] baseBytes = utils.getBaseBytes();
+        Log.e(TAG, "uploadLog: bytes==" + PrimitiveConversion.getHexStringFromBytes(baseBytes, false));
+        for (int i = 0; i < baseBytes.length; i++) {
+            baseData.append(baseBytes[i] & 0XFF);
+        }
+        String workHourData = baseData.toString();
+        Log.e(TAG, "uploadLog: workHourData== leng=" + workHourData.length() + "," + workHourData);
+        return uploadLog(workHourData, floatLen, version, intLen, serialNo, fcp, loginid);
     }
 
 
@@ -78,6 +86,46 @@ public class NetManager {
         bean.setFcp(fcp);
         bean.setLoginId(loginid);
         bean.setBlock(IBlock.BLOCK_1);
+        Gson gson = new Gson();
+        String dataLog = gson.toJson(bean);
+        return dataLog;
+    }
+
+    public String uploadLogBlock2(String dataBlock1, int intLen1, int floatLen1, String dataBlock2, int intLen2, int floatLen2, int version, String serialNo, int fcp, String loginid) {
+
+        long createTime = System.currentTimeMillis();
+        List<DataDetailBean> dataList = new ArrayList<>();
+
+        DataDetailBean block1 = new DataDetailBean();
+        block1.setData(dataBlock1);
+        block1.setReceiveTime(createTime);
+        block1.setBlock(IBlock.BLOCK_1);
+        block1.setSlotCountInt(intLen1);
+        block1.setSlotCountFloat(floatLen1);
+
+        DataDetailBean block2 = new DataDetailBean();
+        block2.setData(dataBlock2);
+        block2.setReceiveTime(createTime);
+        block2.setBlock(IBlock.BLOCK_2);
+        block2.setSlotCountInt(intLen2);
+        block2.setSlotCountFloat(floatLen2);
+
+        dataList.add(block1);
+        dataList.add(block2);
+
+        List<List<DataDetailBean>> listlist = new ArrayList<>();
+        listlist.add(dataList);
+        UploadDataBean bean = new UploadDataBean();
+        bean.setCreateTime(createTime);
+        bean.setGprsIntLeng(intLen1 + intLen2);
+        bean.setGprsFloatLeng(floatLen1 + floatLen2);
+        bean.setGprsVersion(version);
+        bean.setDataList(listlist);
+        bean.setBlock(IBlock.BLOCK_2);
+
+        bean.setSerialNo(serialNo);
+        bean.setFcp(fcp);
+        bean.setLoginId(loginid);
         Gson gson = new Gson();
         String dataLog = gson.toJson(bean);
         return dataLog;

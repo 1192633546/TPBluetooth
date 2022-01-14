@@ -9,9 +9,11 @@ package com.tpnet.tpbluetooth.event;
  */
 public class ReveiverEvent {
     private String msg;
+    private byte[] data;
 
-    public ReveiverEvent(String msg) {
+    public ReveiverEvent(String msg, byte[] data) {
         this.msg = msg;
+        this.data = data;
     }
 
     public String getMsg() {
@@ -20,5 +22,13 @@ public class ReveiverEvent {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 }

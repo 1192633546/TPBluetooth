@@ -41,7 +41,7 @@ import java.util.UUID;
  */
 
 public class EIBackHaulBluetooth extends Bluetooth {
-    public static final String TAG="TPBluetooth";
+    public static final String TAG="EIBackHaulBluetooth";
     private static EIBackHaulBluetooth INSTANCE;
 
     private BluetoothAdapter mBluetoothAdapter;  //本地蓝牙

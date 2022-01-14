@@ -71,8 +71,8 @@ public class OkhttpManager {
         Log.e(TAG, "getUrl: " + bean);
         this.mUrl = bean.getData().getSrvAddress();
 
-        String requestBody=NetManager.getInstance().uploadLog("");
-        NetManager.getInstance().upLoadData(requestBody);
+//        String requestBody=NetManager.getInstance().uploadLog("");
+//        NetManager.getInstance().upLoadData(requestBody);
     }
 
     public void upload(String requestBody) {
