@@ -10,7 +10,7 @@ public class BlueLog  {
     
     
     
-    public static final String TAG = "@@tpbluetooth";
+    public static final String TAG = "BlueLog";
     
     
     public static boolean isPrint  = BuildConfig.DEBUG;

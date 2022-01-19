@@ -37,7 +37,7 @@ public class OkhttpManager {
     }
 
     public void init() {
-        getServerUrl(URL.LAUNCHER_TEST);
+        getServerUrl(URL.LAUNCHER_ONLINE);
     }
 
     public void getServerUrl(String mUrl) {

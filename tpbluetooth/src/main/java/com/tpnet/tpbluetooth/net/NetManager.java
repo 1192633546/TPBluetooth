@@ -46,6 +46,8 @@ public class NetManager {
     private String uploadLog(byte[] data) {
         DataBeanUtils utils = new DataBeanUtils(data);
         String serialNo = utils.getSerialNo();
+//        String test = "SY03650000044";
+//        serialNo = test;
         int intLen = utils.getIntLen();
         int floatLen = utils.getFloatLen();
         int version = utils.getVersion();
@@ -53,12 +55,9 @@ public class NetManager {
         String loginid = serialNo;
         StringBuilder baseData = new StringBuilder();
         byte[] baseBytes = utils.getBaseBytes();
-        Log.e(TAG, "uploadLog: bytes==" + PrimitiveConversion.getHexStringFromBytes(baseBytes, false));
-        for (int i = 0; i < baseBytes.length; i++) {
-            baseData.append(baseBytes[i] & 0XFF);
-        }
-        String workHourData = baseData.toString();
-        Log.e(TAG, "uploadLog: workHourData== leng=" + workHourData.length() + "," + workHourData);
+        String workHourData = PrimitiveConversion.getHexStringFromBytes(baseBytes, false, false);
+        Log.e(TAG, "uploadLog: bytes==" + workHourData);
+        Log.e(TAG, "uploadLog: workHourData== leng=" + workHourData.length());
         return uploadLog(workHourData, floatLen, version, intLen, serialNo, fcp, loginid);
     }
 
