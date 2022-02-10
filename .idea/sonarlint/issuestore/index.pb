@@ -128,3 +128,15 @@ F
 screenMatch.properties,0/9/0908971cbad38cd5bf1a46c600cf45317f053a62
 N
 screenMatch_example_dimens.xml,6/a/6adf3d16e491cd24d9a8274c224f2cd94e3c5d40
+g
+7app/src/main/java/com/tpnet/bluedemo/IndexActivity.java,4/e/4e0752a4887801067ecfb17a9948076322580793
+x
+Htpbluetooth/src/main/java/com/tpnet/tpbluetooth/event/ReveiverEvent.java,c/8/c86eb116ab1ed7446e5703bb60530800662031c0
+v
+Ftpbluetooth/src/main/java/com/tpnet/tpbluetooth/net/OkhttpManager.java,1/f/1fc2c3b8bc7df7d7568753c29909077c4327be1b
+{
+Ktpbluetooth/src/main/java/com/tpnet/tpbluetooth/inter/connect/Constant.java,f/b/fb2216480f07ac394d953a895b36efcd0966eff7
+y
+Itpbluetooth/src/main/java/com/tpnet/tpbluetooth/thread/ConnectThread.java,d/e/de467d76bcf1856bcb08ec34d61b7c14e1df8f0b
+y
+Itpbluetooth/src/main/java/com/tpnet/tpbluetooth/device/DataBeanUtils.java,4/7/475086e75c04c0d3d3212f913c1c9c6ae4186eb0

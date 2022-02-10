@@ -20,7 +20,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.support.annotation.RequiresApi;
-import android.util.Base64;
 import android.util.Log;
 
 import com.tpnet.tpbluetooth.device.PrimitiveConversion;
@@ -32,7 +31,7 @@ import com.tpnet.tpbluetooth.inter.BlueServerListener;
 import com.tpnet.tpbluetooth.inter.connect.Constant;
 import com.tpnet.tpbluetooth.thread.ClientThread;
 import com.tpnet.tpbluetooth.thread.ServerThread;
-import com.tpnet.tpbluetooth.util.AESUtils;
+import com.tpnet.tpbluetooth.util.AESHelper;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -151,12 +150,11 @@ public class BluetoothServer {
                     byte[] bytes = bundle.getByteArray(Constant.INTENT_MESSAGE_BYTES);
                     device = bundle.getParcelable(Constant.INTENT_DEVICE);
                     // 1、原始数据
-                    Log.e(TAG, "handleMessage 收到消息|:bytes== len==" + bytes.length + "," + PrimitiveConversion.getHexStringFromBytes(bytes, false,false));
+                    Log.e(TAG, "handleMessage 收到消息|:bytes== len==" + bytes.length + "," + PrimitiveConversion.getHexStringFromBytes(bytes, true));
                     //2、Base64解密
-                    bytes = Base64.decode(bytes, Base64.DEFAULT);
-                    Log.e(TAG, "handleMessage 收到消息|:bytes22== len==" + bytes.length + "," + PrimitiveConversion.getHexStringFromBytes(bytes, false,false));
                     // 3、AES解密
-                    bytes = AESUtils.decrypt(bytes, AESUtils.AES_KEY.trim().getBytes());
+                    bytes = AESHelper.decrypt(new String(bytes), AESHelper.AES_KEY).getBytes();
+                    Log.e(TAG, "handleMessage AES解密 收到消息|:bytes== len==" + bytes.length + "," + PrimitiveConversion.getHexStringFromBytes(bytes, true));
                     if (mMessageListener != null) {
                         mMessageListener.onReceiveMessage(device, bytes);
                     }
