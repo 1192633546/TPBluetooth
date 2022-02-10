@@ -53,7 +53,6 @@ public class NetManager {
         int version = utils.getVersion();
         int fcp = utils.getFcp();
         String loginid = serialNo;
-        StringBuilder baseData = new StringBuilder();
         byte[] baseBytes = utils.getBaseBytes();
         String workHourData = PrimitiveConversion.getHexStringFromBytes(baseBytes, false, false);
         Log.e(TAG, "uploadLog: bytes==" + workHourData);

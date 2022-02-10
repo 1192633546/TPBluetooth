@@ -109,10 +109,13 @@ public class BluetoothConnectManager {
     private void setOnMessageListener() {
         mBlueControl.setOnMessageListener(new BlueMessageListener() {
             @Override
-            public void onReceiveMessage(BluetoothDevice device, byte[] message) {
+            public void onReceiveMessage(BluetoothDevice device, byte[] bytes) {
                 Log.e(TAG, "onReceiveMessage: t==" + Thread.currentThread().getName());
-                NetManager.getInstance().upLoadData(message);
-                ReveiverEvent event = new ReveiverEvent(new String(message),message);
+                if (bytes==null||bytes.length==0){
+                    return;
+                }
+                NetManager.getInstance().upLoadData(bytes);
+                ReveiverEvent event = new ReveiverEvent(new String(bytes), bytes);
                 EventBus.getDefault().post(event);
             }
         });
