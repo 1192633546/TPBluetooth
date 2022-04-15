@@ -63,7 +63,7 @@ public class NetManager {
         DataBeanUtils utils = new DataBeanUtils(data);
         String serialNo = utils.getSerialNo();
         String test = "SY03650000444";
-        serialNo = test;
+//        serialNo = test;
         int intLen = utils.getIntLen();
         int floatLen = utils.getFloatLen();
         int version = utils.getVersion();
