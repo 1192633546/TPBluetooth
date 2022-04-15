@@ -22,6 +22,7 @@ import com.tpnet.bluedemo.util.ToastUtil;
 import com.tpnet.tpbluetooth.EIBackHaulBluetooth;
 import com.tpnet.tpbluetooth.event.ReveiverEvent;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -41,7 +42,7 @@ public class IndexActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_index);
         mCbOpen = (CheckBox) findViewById(R.id.cb_open);
         tv_content = (TextView) findViewById(R.id.tv_content);
@@ -155,6 +156,7 @@ public class IndexActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         Log.e(TAG, "onDestroy: ");
     }
 }

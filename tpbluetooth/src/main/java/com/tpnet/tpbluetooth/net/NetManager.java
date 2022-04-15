@@ -38,25 +38,45 @@ public class NetManager {
         BluetoothConnectManager.getInstance().connect(device);
     }
 
-    public void upLoadData(byte[] data) {
-        String requestBody = uploadLog(data);
+    public void upLoadData(String s) {
+        // TODO: 4/15/22
+        String requestBody = uploadLog(s);
         OkhttpManager.getInstance().upload(requestBody);
     }
 
-    private String uploadLog(byte[] data) {
+    static byte[] str2Bytes(String s) {
+        char[] cc = s.toCharArray();
+        byte[] bytes = new byte[cc.length / 2];
+        int t = 0;
+        for (int i = 0; i < cc.length; i = i + 2) {
+            bytes[t] = (byte) (Integer.parseInt(cc[i] + "" + cc[i + 1], 16) & 0xff);
+            t++;
+        }
+        for (int i = 0; i < bytes.length; i++) {
+            System.out.println(bytes[i]);
+        }
+        return bytes;
+    }
+
+    private String uploadLog(String s) {
+        byte[] data = str2Bytes(s);
         DataBeanUtils utils = new DataBeanUtils(data);
         String serialNo = utils.getSerialNo();
-//        String test = "SY03650000044";
-//        serialNo = test;
+        String test = "SY03650000444";
+        serialNo = test;
         int intLen = utils.getIntLen();
         int floatLen = utils.getFloatLen();
         int version = utils.getVersion();
         int fcp = utils.getFcp();
         String loginid = serialNo;
         byte[] baseBytes = utils.getBaseBytes();
+        byte[] getDataBytes = utils.getDataBytes();
         String workHourData = PrimitiveConversion.getHexStringFromBytes(baseBytes, false, false);
-        Log.e(TAG, "uploadLog: bytes==" + workHourData);
-        Log.e(TAG, "uploadLog: workHourData== leng=" + workHourData.length());
+        String getDataByteS = PrimitiveConversion.getHexStringFromBytes(getDataBytes, false, false);
+        Log.e(TAG, "uploadLog: getDataByteS==" + getDataByteS);
+//        workHourData="000000000000000000000000000000000000000000000000000000000000000000000000e703000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000033573b4500000000000000000000000000000000000000000000000000000000805c645c0000004100000000deb532450000000000000000000000000000000000000000000000000000000000000000000000000000c84200000000000000001bf72770c1c99fdf000000000000000000000000000000000000000000000000";
+        // 32*4+38+8=432
+        Log.e(TAG, "uploadLog: workHourData== length=" + workHourData.length());
         return uploadLog(workHourData, floatLen, version, intLen, serialNo, fcp, loginid);
     }
 

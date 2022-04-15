@@ -34,6 +34,9 @@ public class DataBeanUtils {
 
     public DataBeanUtils(byte[] data) {
         dataBytes = data;
+//        for (int i = 0; i < dataBytes.length; i++) {
+//            dataBytes[i] = (byte) Integer.parseInt(dataBytes[i] + "", 16);
+//        }
     }
 
     public String getSerialNo() {
@@ -84,6 +87,14 @@ public class DataBeanUtils {
         baseBytes = new byte[dataBytes.length - 17];
         System.arraycopy(dataBytes, 17, baseBytes, 0, baseBytes.length);
         return baseBytes;
+    }
+
+    public byte[] getDataBytes() {
+        return dataBytes;
+    }
+
+    public void setDataBytes(byte[] dataBytes) {
+        this.dataBytes = dataBytes;
     }
 
     @Override

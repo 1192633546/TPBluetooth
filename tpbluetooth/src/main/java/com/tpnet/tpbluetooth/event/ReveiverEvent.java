@@ -11,9 +11,8 @@ public class ReveiverEvent {
     private String msg;
     private byte[] data;
 
-    public ReveiverEvent(String msg, byte[] data) {
+    public ReveiverEvent(String msg) {
         this.msg = msg;
-        this.data = data;
     }
 
     public String getMsg() {

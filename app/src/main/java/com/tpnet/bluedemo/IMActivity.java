@@ -165,7 +165,7 @@ public class IMActivity extends Activity implements View.OnClickListener, BlueMe
     }
 
     @Override
-    public void onReceiveMessage(BluetoothDevice device, byte[] mess) {
+    public void onReceiveMessage(BluetoothDevice device, String mess) {
         Log.e(TAG, "onReceiveMessage: " + mess);
         //收到消息
         IMMessage message = new IMMessage();

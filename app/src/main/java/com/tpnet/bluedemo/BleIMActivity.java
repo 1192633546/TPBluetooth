@@ -166,7 +166,7 @@ public class BleIMActivity extends Activity implements View.OnClickListener, Blu
     }
 
     @Override
-    public void onReceiveMessage(BluetoothDevice device, byte[] mess) {
+    public void onReceiveMessage(BluetoothDevice device, String mess) {
         //收到消息
         
         IMMessage message = new IMMessage();

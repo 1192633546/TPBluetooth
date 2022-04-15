@@ -9,6 +9,6 @@ import android.bluetooth.BluetoothDevice;
 
 public interface BlueMessageListener {
  
-    void onReceiveMessage(BluetoothDevice device,byte[] message);
+    void onReceiveMessage(BluetoothDevice device,String message);
     
 }

@@ -11,8 +11,6 @@ Ktpbluetooth/src/main/java/com/tpnet/tpbluetooth/inter/BlueBondListener.java,f/
 ,.idea/inspectionProfiles/Project_Default.xml,4/9/496a238a6afa168dbaf6efd37bb459331589579c
 X
 (gradle/wrapper/gradle-wrapper.properties,f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
-?
-settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 x
 Happ/src/androidTest/java/com/tpnet/bluedemo/ExampleInstrumentedTest.java,9/c/9ced0ebf2c0889b7de5d5ab893b5b22144ac57fc
 s
@@ -41,8 +39,6 @@ o
 ?app/src/main/java/com/tpnet/bluedemo/view/DeviceItemLayout.java,5/d/5d1108d8a23e8309c5ceddd828fb5fd1643825d8
 i
 9app/src/test/java/com/tpnet/bluedemo/ExampleUnitTest.java,a/e/ae388cabc2b3322ccec616f42f36ec534449ef9d
-@
-app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 F
 app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
 }
@@ -55,8 +51,6 @@ Ltpbluetooth/src/main/java/com/tpnet/tpbluetooth/inter/BlueStateListener.java,2
 Ntpbluetooth/src/main/java/com/tpnet/tpbluetooth/receiver/BlueBondReceiver.java,b/3/b37f0a8f3f2ec245dfd0d57eab59820638eaf45f
 ~
 Ntpbluetooth/src/main/java/com/tpnet/tpbluetooth/receiver/BlueFindReceiver.java,5/5/5552114f69109d9ffcfb53ec3458f45ed5fc681d
-x
-Htpbluetooth/src/main/java/com/tpnet/tpbluetooth/thread/ClientThread.java,9/1/9152d9d124e17c5764d4fb6a9ac9b6483e4d32d2
 x
 Htpbluetooth/src/main/java/com/tpnet/tpbluetooth/thread/ServerThread.java,b/4/b416aea17fdfb477ae40fff3f8f5124e59f94c18
 s
@@ -71,20 +65,12 @@ z
 Jtpbluetooth/src/main/java/com/tpnet/tpbluetooth/GattAttributeResolver.java,8/3/83572a5363ed27a72e4166ff285095e882cfbf2c
 t
 Dtpbluetooth/src/main/java/com/tpnet/tpbluetooth/MessageProtocol.java,6/f/6f244973753052a3c8324d00be6955f9f6ac08ce
-g
-7app/src/main/java/com/tpnet/bluedemo/BleIMActivity.java,5/a/5ac60a6c918001c955ec92a76de8af9d893b05e4
-d
-4app/src/main/java/com/tpnet/bluedemo/IMActivity.java,7/d/7d6a9996288e288b23026c5726edbc9bca0774ca
-~
-Ntpbluetooth/src/main/java/com/tpnet/tpbluetooth/inter/BlueMessageListener.java,a/c/ac37307b5ee6d2d78e129053fab14e69372d078a
 t
 Dtpbluetooth/src/test/java/com/tpnet/tpbluetooth/ExampleUnitTest.java,9/2/921becffad3d76ae14a87228ff30ebf43297e1cb
 v
 Ftpbluetooth/src/main/java/com/tpnet/tpbluetooth/net/bean/BaseBean.java,0/a/0a0fb847dee349a5c030709f4b0bca2b6f89183f
 
 Otpbluetooth/src/main/java/com/tpnet/tpbluetooth/net/bean/ServerUrlInfoBean.java,9/0/907c964e13bed62d2b250bf5ee5a08ff8248db1a
-l
-<tpbluetooth/src/main/java/com/tpnet/tpbluetooth/net/URL.java,d/5/d599e59f77ceb5fff876f77804fab9171dee8f0f
 ~
 Ntpbluetooth/src/main/java/com/tpnet/tpbluetooth/net/upload/DataDetailBean.java,c/3/c3ba1c8ace1af023ddaa8ceb265c0b41cc1fe7b5
 ~
@@ -93,20 +79,12 @@ e
 5app/src/main/java/com/tpnet/bluedemo/BleActivity.java,6/2/62c5077939f104ca842ae4a6783cbdb39d1749c7
 k
 ;app/src/main/java/com/tpnet/bluedemo/util/AcceptThread.java,5/1/516a46c82536168624fe704ea804b68599dff3eb
-x
-Htpbluetooth/src/main/java/com/tpnet/tpbluetooth/EIBackHaulBluetooth.java,b/4/b470c776d50fbb325b8efa5f3f7ede24667a62ba
-x
-Htpbluetooth/src/main/java/com/tpnet/tpbluetooth/device/SerialNoBean.java,1/b/1b0fb8795876a274d6d14ed00f1b54a7a6b6ad58
 o
 ?tpbluetooth/src/main/java/com/tpnet/tpbluetooth/BleControl.java,9/5/9561416a816f3f006a34b47cfb20a68f117cda80
 n
 >tpbluetooth/src/main/java/com/tpnet/tpbluetooth/Bluetooth.java,7/6/764d321fbe7e15a555cb174c5e260902e5c4175e
-x
-Htpbluetooth/src/main/java/com/tpnet/tpbluetooth/device/MachineUtils.java,3/1/313bdb9c3097908a7dabfb2f60c305f41fb3b688
 F
 tpbluetooth/.gitignore,a/d/ad248a12d6e0885b174f04333284f3f78999e58a
-H
-tpbluetooth/build.gradle,9/0/90d54ddff0814b33f541e04ebfbe720ada47903a
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
@@ -114,29 +92,31 @@ N
 tpbluetooth/proguard-rules.pro,d/b/db3d165520bae3657886baac12ea404dcf593523
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 f
 6app/src/main/java/com/tpnet/bluedemo/MainActivity.java,e/1/e1b031f8e0a21fcb5dc78c02d72de86f9b3c5654
 i
 9app/src/main/java/com/tpnet/bluedemo/BaseApplication.java,d/5/d58c8db1f87fb1011c6af1b4049afb6b913559ab
 l
 <tpbluetooth/src/main/java/com/tpnet/tpbluetooth/BlueLog.java,2/f/2f173e79a5502f51a03e872a880b81c2b9c83d6a
+x
+Htpbluetooth/src/main/java/com/tpnet/tpbluetooth/thread/ClientThread.java,9/1/9152d9d124e17c5764d4fb6a9ac9b6483e4d32d2
 X
 (tpbluetooth/src/main/AndroidManifest.xml,0/9/09005377850714e4cd505964bda8a4084e215100
-F
-screenMatch.properties,0/9/0908971cbad38cd5bf1a46c600cf45317f053a62
-N
-screenMatch_example_dimens.xml,6/a/6adf3d16e491cd24d9a8274c224f2cd94e3c5d40
-g
-7app/src/main/java/com/tpnet/bluedemo/IndexActivity.java,4/e/4e0752a4887801067ecfb17a9948076322580793
-x
-Htpbluetooth/src/main/java/com/tpnet/tpbluetooth/event/ReveiverEvent.java,c/8/c86eb116ab1ed7446e5703bb60530800662031c0
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+l
+<tpbluetooth/src/main/java/com/tpnet/tpbluetooth/net/URL.java,d/5/d599e59f77ceb5fff876f77804fab9171dee8f0f
+?
+settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 v
 Ftpbluetooth/src/main/java/com/tpnet/tpbluetooth/net/OkhttpManager.java,1/f/1fc2c3b8bc7df7d7568753c29909077c4327be1b
 {
 Ktpbluetooth/src/main/java/com/tpnet/tpbluetooth/inter/connect/Constant.java,f/b/fb2216480f07ac394d953a895b36efcd0966eff7
 y
 Itpbluetooth/src/main/java/com/tpnet/tpbluetooth/thread/ConnectThread.java,d/e/de467d76bcf1856bcb08ec34d61b7c14e1df8f0b
-y
-Itpbluetooth/src/main/java/com/tpnet/tpbluetooth/device/DataBeanUtils.java,4/7/475086e75c04c0d3d3212f913c1c9c6ae4186eb0
+
+Otpbluetooth/src/main/java/com/tpnet/tpbluetooth/device/PrimitiveConversion.java,8/a/8ad0ff60e37a7e29607943cf630800fb0b4073ac
